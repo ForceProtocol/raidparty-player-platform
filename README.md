@@ -1,4 +1,4 @@
-# RaidpartyPlayerPlatform
+# App.Raidparty.Io
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
@@ -12,7 +12,15 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Clear the cache first: sudo npm cache clear --force
+
+npm install
+
+To build the staging use sudo ng build --env=stag
+
+To build the production use sudo ng build -prod
+
+The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 

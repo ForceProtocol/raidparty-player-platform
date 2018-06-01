@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('raidparty-player-platform App', () => {
+describe('app.raidparty.io App', () => {
   let page: AppPage;
 
   beforeEach(() => {
