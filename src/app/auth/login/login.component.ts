@@ -15,19 +15,14 @@ export class LoginComponent implements OnInit {
   developerId: string;
   pin: string;
 
-  constructor(private fb: FormBuilder,
-              private auth: AuthService,
-              private toaster: ToastrService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private toaster: ToastrService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     const params = this.activatedRoute.snapshot.queryParams;
-    if (params.developer) {
-      this.developerId = params.developer;
-      this.pin = params.pin;
-      this.activateDevloper();
-    } else {
-      this.createForm();
-    }
+    this.createForm();
   }
 
   ngOnInit() {
@@ -51,14 +46,14 @@ export class LoginComponent implements OnInit {
           timeOut: 3000,
           positionClass: "toast-top-right"
         });
-        this.router.navigate(['/games/list']);
+        this.router.navigate(['/dashboard']);
       },
-      (errorObj) => {
-        this.toaster.error('Error', errorObj.error.err, {
-          timeOut: 3000,
-          positionClass: 'toast-top-center'
+        (errorObj) => {
+          this.toaster.error('Error', errorObj.error.err, {
+            timeOut: 3000,
+            positionClass: 'toast-top-center'
+          });
         });
-      });
   }
 
   activateDevloper() {
@@ -70,12 +65,12 @@ export class LoginComponent implements OnInit {
         });
         this.router.navigate(['/login']);
       },
-      (errorObj) => {
-        this.toaster.error('Error', errorObj.error.err, {
-          timeOut: 3000,
-          positionClass: 'toast-top-center'
+        (errorObj) => {
+          this.toaster.error('Error', errorObj.error.err, {
+            timeOut: 3000,
+            positionClass: 'toast-top-center'
+          });
         });
-      });
   }
 
 }
