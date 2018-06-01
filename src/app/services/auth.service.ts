@@ -8,14 +8,14 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService implements CanActivate {
   isLoggedIn = false;
-  developer: any;
+  player: any;
   private token: any;
 
   constructor(private http: HttpClient,
     private router: Router) {
-    const dev = localStorage.getItem('developer');
+    const dev = localStorage.getItem('player');
     if (dev) {
-      this.developer = JSON.parse(dev);
+      this.player = JSON.parse(dev);
       this.token = localStorage.getItem('token');
       this.isLoggedIn = true;
     }
@@ -72,15 +72,15 @@ export class AuthService implements CanActivate {
     // Api is not implemented yet so currently working with clearing localStorage
     localStorage.clear();
     this.isLoggedIn = false;
-    this.developer = {};
+    this.player = {};
     this.token = '';
     return true;
   }
 
   private setLocalStorage(response) {
-    this.developer = response.developer;
+    this.player = response.player;
     this.token = response.token;
-    localStorage.setItem('developer', JSON.stringify(response.developer));
+    localStorage.setItem('player', JSON.stringify(response.player));
     localStorage.setItem('token', response.token);
   }
 
