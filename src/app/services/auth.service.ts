@@ -13,14 +13,17 @@ export class AuthService implements CanActivate {
 
   constructor(private http: HttpClient,
     private router: Router) {
-    const dev = localStorage.getItem('player');
-    if (dev) {
-      this.player = JSON.parse(dev);
+    const player = localStorage.getItem('player');
+    if (player) {
+      this.player = JSON.parse(player);
       this.token = localStorage.getItem('token');
       this.isLoggedIn = true;
     }
   }
 
+  getLoggedInPlayer() {
+    return this.player;
+  }
   canActivate() {
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
@@ -40,25 +43,27 @@ export class AuthService implements CanActivate {
   login(params) {
     return this.http.post(`${environment.API_HOST}/mob/player/login`, params)
       .map((response) => {
-        this.isLoggedIn = true;
-        this.setLocalStorage(response);
+        if (response['success']) {
+          this.isLoggedIn = true;
+          this.setLocalStorage(response);
+        }
         return response;
       });
   }
 
   resetPassword(params) {
-    return this.http.post(`${environment.API_HOST}/app/developer/reset-password`, params);
+    return this.http.post(`${environment.API_HOST}/mob/player/reset-password`, params);
   }
 
-  changePassword(params, developerId, pin) {
-    return this.http.post(`${environment.API_HOST}/app/developer/change-password?developer=${developerId}&pin=${pin}`, params)
+  changePassword(params, playerId) {
+    return this.http.post(`${environment.API_HOST}/mob/player/change-password?playerId=${playerId}`, params)
       .map((response: any) => {
         return response;
       });
   }
 
-  activateDevloper(developerId, pin) {
-    return this.http.get(`${environment.API_HOST}/app/developer/activate?developer=${developerId}&pin=${pin}`)
+  activatePlayer(playerId, pin) {
+    return this.http.post(`${environment.API_HOST}/mob/player/activate`, { playerId, pin })
       .map((response: any) => {
         return response;
       });

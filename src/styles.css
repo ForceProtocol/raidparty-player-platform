@@ -10282,7 +10282,7 @@ button:focus {
 .body-bg {
 	background-image: url('/assets/images/body-bg.png');
 	background-size: cover;
-	height: 100vh;
+	height: -webkit-fill-available;
 	background-position: center center;
 }
 .form-bg {

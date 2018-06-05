@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
 
     this.signupForm = this.fb.group({
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required, Validators.minLength(2)],
+      lastName: ['', Validators.required],
       email: ['', Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)],
       password: ['', Validators.required],
       acceptTerms: [false, Validators.required]
@@ -47,18 +47,18 @@ export class SignupComponent implements OnInit {
 
     this.auth.signup(this.signupForm.value)
       .subscribe((data) => {
-        this.toaster.success('Signed up successfully and activation link has been sent to your email inbox', 'Success', {
+        this.toaster.success(data['msg'], 'Success', {
           timeOut: 3000,
-          positionClass: "toast-top-right"
+          positionClass: 'toast-top-right'
         });
         this.router.navigate(['/login']);
       },
       (errorObj) => {
         this.toaster.error('Error', errorObj.error.err, {
           timeOut: 3000,
-          positionClass: "toast-top-center"
+          positionClass: 'toast-top-center'
         });
-      })
+      });
   }
 
 }

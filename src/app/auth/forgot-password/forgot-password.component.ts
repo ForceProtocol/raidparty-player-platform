@@ -14,8 +14,8 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPasswordForm: FormGroup;
   changePasswordForm: FormGroup;
   error: string;
-  isForgetPassword: boolean = true;
-  developerId: string;
+  isForgetPassword: boolean;
+  playerId: string;
   pin: string;
 
 
@@ -32,12 +32,12 @@ export class ForgotPasswordComponent implements OnInit {
 
   createForm() {
 
-    if (this.activatedRoute.snapshot.queryParams.developer) {
+    if (this.activatedRoute.snapshot.queryParams.playerId) {
       this.isForgetPassword = false;
-      this.developerId = this.activatedRoute.snapshot.queryParams.developer;
-      this.pin = this.activatedRoute.snapshot.queryParams.pin;
+      this.playerId = this.activatedRoute.snapshot.queryParams.playerId;
       this.changePasswordForm = this.fb.group({
-        password: ['', Validators.required]
+        password: ['', Validators.required],
+        pin: ['', Validators.required]
       });
     } else {
       this.isForgetPassword = true;
@@ -50,7 +50,7 @@ export class ForgotPasswordComponent implements OnInit {
   resetPassword() {
     this.auth.resetPassword(this.forgotPasswordForm.value)
       .subscribe((data) => {
-        this.toaster.success('Success', "Your reset password request has been sent successfully", {
+        this.toaster.success('Success', data['msg'], {
           timeOut: 3000,
           positionClass: "toast-top-right"
         });
@@ -65,7 +65,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   changePassword() {
-    this.auth.changePassword(this.changePasswordForm.value, this.developerId, this.pin)
+    this.auth.changePassword(this.changePasswordForm.value, this.playerId)
       .subscribe((response) => {
         this.toaster.success('Success', response.msg, {
           timeOut: 3000,
