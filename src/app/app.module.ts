@@ -21,6 +21,10 @@ import { FooterComponent } from './headers/footer/footer.component';
 import { SideNavbarComponent } from './side-navbar/side-navbar.component';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GamesComponent } from './games/games.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { MarketplaceComponent } from './marketplace/marketplace.component';
+import { ActivateAccountComponent } from './auth/activate-account/activate-account.component';
 
 
 @NgModule({
@@ -33,6 +37,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SideNavbarComponent,
     TopNavbarComponent,
     DashboardComponent,
+    GamesComponent,
+    WalletComponent,
+    MarketplaceComponent,
+    ActivateAccountComponent,
   ],
   imports: [
     BrowserModule,
