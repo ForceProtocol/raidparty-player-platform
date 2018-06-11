@@ -13,7 +13,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthService } from './services/auth.service';
+import { GameService } from './services/game.service';
+import { EventService } from './services/eventEmitter.service';
 import { AppInterceptor } from './services/app.interceptor';
+import { NotificationService } from './services/notification.service';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -51,8 +54,8 @@ import { ActivateAccountComponent } from './auth/activate-account/activate-accou
     HttpClientModule,
     ToastrModule.forRoot()
   ],
-  providers: [AuthService,
-  { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }],
+  providers: [AuthService, GameService, EventService, NotificationService,
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

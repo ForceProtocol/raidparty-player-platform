@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   showDiv: boolean = false;
-
+  playerCode: string;
   constructor(private auth: AuthService,
               private router: Router,
               private title: Title) {

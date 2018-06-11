@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 
 
 @Injectable()
-export class GameService {
+export class NotificationService {
 
   player: any;
   token: any;
@@ -24,20 +24,9 @@ export class GameService {
     }
   }
 
-  getUserPlayedGames() {
-    return this.http.get(`${environment.API_HOST}/player/playerGames?playerId=${this.player.id}`)
-      .map((response) => response);
-  }
-
-  getAllGames(platformFilter) {
-    return this.http.get(`${environment.API_HOST}/mob/player/games?token=${this.auth.getToken()}&device_type=${platformFilter}`)
+  getPlayerNotifications() {
+    return this.http.get(`${environment.API_HOST}/mob/player/notifications?token=${this.auth.getToken()}`)
       .map(response => response);
-  }
-
-  getGameRewardsProgress(rewardcampaignId) {
-    console.log(this.player.id);
-    return this.http.get(`${environment.API_HOST}/player/trackProgress?player=${this.player.id}&rewardCampaign=${rewardcampaignId}`)
-      .map((response) => response);
   }
 
 }

@@ -85,6 +85,7 @@ export class AuthService implements CanActivate {
   private setLocalStorage(response) {
     this.player = response.player;
     this.token = response.token;
+    console.log(this.player);
     localStorage.setItem('player', JSON.stringify(response.player));
     localStorage.setItem('token', response.token);
   }

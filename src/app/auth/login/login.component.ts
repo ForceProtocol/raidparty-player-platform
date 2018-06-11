@@ -56,21 +56,4 @@ export class LoginComponent implements OnInit {
         });
   }
 
-  activateDevloper() {
-    this.auth.activateDevloper(this.developerId, this.pin)
-      .subscribe((response) => {
-        this.toaster.success('Success', response.msg, {
-          timeOut: 3000,
-          positionClass: "toast-top-right"
-        });
-        this.router.navigate(['/login']);
-      },
-        (errorObj) => {
-          this.toaster.error('Error', errorObj.error.err, {
-            timeOut: 3000,
-            positionClass: 'toast-top-center'
-          });
-        });
-  }
-
 }
