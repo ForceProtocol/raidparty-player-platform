@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { EventService } from '../services/eventEmitter.service';
 
 @Component({
   selector: 'app-side-navbar',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _messageService: EventService) { }
 
   ngOnInit() {
   }
 
+  clickFilter(value): void {
+    this._messageService.filter(value);
+  }
 }

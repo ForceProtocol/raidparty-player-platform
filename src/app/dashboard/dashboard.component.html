@@ -11,7 +11,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item active">Your Player Code :
-              <strong> Jd8nv87 </strong>
+              <strong>{{playerCode}}</strong>
             </li>
           </ol>
         </div>
@@ -28,234 +28,59 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
 
-        <div class="col-lg-3 col-sm-6 col-12">
+        <div class="col-lg-3 col-sm-6 col-12" *ngFor="let game of playerGames">
           <div class="card card-info card-outline">
-            <img class="img-fluid" src="/assets/images/games.jpg">
-            <div class="jackpot-prize"></div>
+            <img class="img-fluid" src={{game.avatar}}>
+            <div class="jackpot-prize">
+              <img src="/assets/images/jackpot-icon.svg" alt="jackpot-icon"> Top Prize:
+              <span>{{game.jackpot}}</span>
+            </div>
+            <li class="list-group-item game-title-li">
+              <h3>{{game.title}}</h3>
+              <div class="game-description" [innerHTML]="game.description">
+              </div>
+            </li>
             <li class="list-group-item popover-hover">
-              <button type="button" class="popover-btn" data-toggle="collapse" data-target="#Wargate">
-                <b>Wargate</b>
-                <a class="float-right"> 0/3 </a>
+              <button (click)="gameRewardProgress(game.prizes)" type="button" class="popover-btn" data-toggle="collapse" [attr.data-target]="'#' + game.game_id">
+                <b>Rewards</b>
+                <a class="float-right"> 0/{{game.prizes.length}}</a>
               </button>
-              <div id="Wargate" class="collapse">
+              <div id={{game.game_id}} class="collapse">
                 <ul class="p-0 mt-2 ">
-                  <li class="list-group-item popover-hover mt-2">
-                    <button class="popover-btn" data-toggle="popover" data-html="true" title=" WarGate " data-content=" <b>Only available in Latin America.</b> <br>
-                              Complete 1 match per day for 10 days anytime throughout the reward time period!<br>
-                              <b>Double your chance by playing one match on the last day (10th June)</b>
-                               ">
-                      <b> Reward 1 </b>
-                      <a class="float-right"> 2.5 Force </a>
-                      <div class="progress progress-xs mt-2">
-                        <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                          style="width: 60%">
-                          <span class="sr-only">60% Complete (warning)</span>
+                  <li class="list-group-item popover-hover mt-2" *ngFor="let reward of game.prizes; let rowIndex=index">
+                    <ng-template #popContent>
+                      <div [innerHTML]="reward.rules">
+                      </div>
+                    </ng-template>
+                    <button type="button " class="popover-btn " [ngbPopover]="popContent " triggers="mouseenter:mouseleave " popoverTitle={{game.title}}>
+                      <b>Reward {{rowIndex+1}} </b>
+                      <a class="float-right "> {{reward.value}} {{reward.currency}} </a>
+                      <div class="progress progress-xs mt-2 ">
+                        <div class="progress-bar bg-info progress-bar-striped " role="progressbar " aria-valuenow="60
+                      " aria-valuemin="0 " aria-valuemax="100 " [style.width]="reward.progress + '%' ">
+                          <span class="sr-only ">60% Complete (warning)</span>
                         </div>
                       </div>
                     </button>
-                  </li>
-                  <li class="list-group-item popover-hover mt-2">
-                    <button class="popover-btn" data-toggle="popover" data-html="true" title=" WarGate " data-content=" <b>Only available in Latin America.</b> <br>
-                              Complete 1 match per day for 10 days anytime throughout the reward time period!<br>
-                              <b>Double your chance by playing one match on the last day (10th June)</b>
-                               ">
-                      <b> Reward 2 </b>
-                      <a class="float-right"> 2.5 Force </a>
-                      <div class="progress progress-xs mt-2">
-                        <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                          style="width: 60%">
-                          <span class="sr-only">60% Complete (warning)</span>
+                    <!-- <button class="popover-btn " data-toggle="popover " data-html="true
+                      " title={{game.title}} [attr.data-content]="reward.rules ? reward.rules : '' ">
+                      <b> Reward {{rowIndex+1}} </b>
+                      <a class="float-right "> {{reward.value}} {{reward.currency}} </a>
+                      <div class="progress progress-xs mt-2 ">
+                        <div class="progress-bar bg-info progress-bar-striped " role="progressbar " aria-valuenow="60
+                      " aria-valuemin="0 " aria-valuemax="100 "
+                          [style.width]="reward.pregress + '%' ">
+                          <span class="sr-only ">60% Complete (warning)</span>
                         </div>
                       </div>
-                    </button>
-                  </li>
-                  <li class="list-group-item popover-hover mt-2">
-                    <button class="popover-btn" data-toggle="popover" data-html="true" title=" WarGate " data-content=" <b>Only available in Latin America.</b> <br>
-                              Complete 1 match per day for 10 days anytime throughout the reward time period!<br>
-                              <b>Double your chance by playing one match on the last day (10th June)</b>
-                               ">
-                      <b> Reward 3 </b>
-                      <a class="float-right"> 2.5 Force </a>
-                      <div class="progress progress-xs mt-2">
-                        <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                          style="width: 60%">
-                          <span class="sr-only">60% Complete (warning)</span>
-                        </div>
-                      </div>
-                    </button>
+                    </button> -->
                   </li>
                 </ul>
               </div>
             </li>
-            <li class="list-group-item popover-hover popover-li-hide">
-              <button class="popover-btn" data-toggle="popover" data-html="true" title=" WarGate " data-content=" <b>Only available in Latin America.</b> <br>
-                              Complete 1 match per day for 10 days anytime throughout the reward time period!<br>
-                              <b>Double your chance by playing one match on the last day (10th June)</b>
-                               ">
-                <b> Reward 1 </b>
-                <a class="float-right"> 2.5 Force </a>
-                <div class="progress progress-xs mt-2">
-                  <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                    style="width: 60%">
-                    <span class="sr-only">60% Complete (warning)</span>
-                  </div>
-                </div>
-              </button>
-            </li>
-            <div>
-              <div class="btn-group w-100">
-                <button type="button" class="btn btn-block bg-dark " data-toggle="dropdown" aria-expanded="false">
-                  play
-                </button>
-                <div class="dropdown-menu btn-block " role="menu" x-placement="bottom-start">
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="assets/images/android-dark.svg">ios</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="assets/images/apple-dark.svg">android</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="assets/images/desktop-dark.svg"> PC </a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="assets/images/xbox-dark.svg">Xbox</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="assets/images/playstation-dark.svg">Playstation</a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        <div class="col-lg-3 col-sm-6 col-12">
-          <div class="card card-info card-outline">
-            <img class="img-fluid" src="/assets/images/games.jpg">
-            <div class="jackpot-prize"></div>
-            <li class="list-group-item popover-hover">
-              <button type="button" class="popover-btn" data-toggle="collapse" data-target="#Wargate2">
-                <b>Wargate</b>
-                <a class="float-right"> 0/3 </a>
-              </button>
-              <div id="Wargate2" class="collapse">
-                <ul class="p-0 mt-2 ">
-                  <li class="list-group-item popover-hover mt-2">
-                    <button class="popover-btn" data-toggle="popover" data-html="true" title=" WarGate " data-content=" <b>Only available in Latin America.</b> <br>
-                              Complete 1 match per day for 10 days anytime throughout the reward time period!<br>
-                              <b>Double your chance by playing one match on the last day (10th June)</b>
-                               ">
-                      <b> Reward 2 </b>
-                      <a class="float-right"> 2.5 Force </a>
-                      <div class="progress progress-xs mt-2">
-                        <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                          style="width: 60%">
-                          <span class="sr-only">60% Complete (warning)</span>
-                        </div>
-                      </div>
-                    </button>
-                  </li>
-
-                </ul>
-              </div>
-            </li>
-            <li class="list-group-item popover-hover">
-              <button class="popover-btn" data-toggle="popover" data-html="true" title=" WarGate " data-content=" <b>Only available in Latin America.</b> <br>
-                              Complete 1 match per day for 10 days anytime throughout the reward time period!<br>
-                              <b>Double your chance by playing one match on the last day (10th June)</b>
-                               ">
-                <b> Reward 1 </b>
-                <a class="float-right"> 2.5 Force </a>
-                <div class="progress progress-xs mt-2">
-                  <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                    style="width: 60%">
-                    <span class="sr-only">60% Complete (warning)</span>
-                  </div>
-                </div>
-              </button>
-            </li>
-            <div>
-              <div class="btn-group w-100">
-                <button type="button" class="btn btn-block bg-dark " data-toggle="dropdown" aria-expanded="false">
-                  play
-                </button>
-                <div class="dropdown-menu btn-block " role="menu" x-placement="bottom-start">
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="/assets/images/android-dark.svg"> ios</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="/assets/images/apple-dark.svg">android</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="/assets/images/desktop-dark.svg"> PC </a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="/assets/images/xbox-dark.svg">Xbox</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="/assets/images/playstation-dark.svg">Playstation</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-6 col-12">
-          <div class="card card-info card-outline">
-            <img class="img-fluid" src="/assets/images/games.jpg">
-            <div class="jackpot-prize"></div>
-            <li class="list-group-item popover-hover">
-              <button type="button" class="popover-btn" data-toggle="collapse" data-target="#Wargate3">
-                <b>Wargate</b>
-                <a class="float-right"> 0/3 </a>
-              </button>
-              <div id="Wargate3" class="collapse">
-                <ul class="p-0 mt-2 ">
-                  <li class="list-group-item popover-hover mt-2">
-                    <button class="popover-btn" data-toggle="popover" data-html="true" title=" WarGate " data-content=" <b>Only available in Latin America.</b> <br>
-                              Complete 1 match per day for 10 days anytime throughout the reward time period!<br>
-                              <b>Double your chance by playing one match on the last day (10th June)</b>
-                               ">
-                      <b> Reward 3 </b>
-                      <a class="float-right"> 2.5 Force </a>
-                      <div class="progress progress-xs mt-2">
-                        <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                          style="width: 60%">
-                          <span class="sr-only">60% Complete (warning)</span>
-                        </div>
-                      </div>
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="list-group-item popover-hover">
-              <button class="popover-btn" data-toggle="popover" data-html="true" title=" WarGate " data-content=" <b>Only available in Latin America.</b> <br>
-                              Complete 1 match per day for 10 days anytime throughout the reward time period!<br>
-                              <b>Double your chance by playing one match on the last day (10th June)</b>
-                               ">
-                <b> Reward 1 </b>
-                <a class="float-right"> 2.5 Force </a>
-                <div class="progress progress-xs mt-2">
-                  <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                    style="width: 60%">
-                    <span class="sr-only">60% Complete (warning)</span>
-                  </div>
-                </div>
-              </button>
-            </li>
-            <div>
-              <div class="btn-group w-100">
-                <button type="button" class="btn btn-block bg-dark " data-toggle="dropdown" aria-expanded="false">
-                  play
-                </button>
-                <div class="dropdown-menu btn-block " role="menu" x-placement="bottom-start">
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="images/android-dark.svg"> ios</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="images/apple-dark.svg">android</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="images/desktop-dark.svg"> PC </a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="images/xbox-dark.svg">Xbox</a>
-                  <a class="dropdown-item" href="#">
-                    <img class="sidebar-menu-icon" src="images/playstation-dark.svg">Playstation</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- /.row -->
     </div>

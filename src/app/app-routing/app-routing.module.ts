@@ -9,6 +9,8 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { SideNavbarComponent } from '../side-navbar/side-navbar.component';
 import { TopNavbarComponent } from '../top-navbar/top-navbar.component';
 import { GamesComponent } from '../games/games.component';
+import { MarketplaceComponent } from '../marketplace/marketplace.component';
+import { WalletComponent } from '../wallet/wallet.component';
 import { ActivateAccountComponent } from '../auth/activate-account/activate-account.component';
 import { AuthService } from '../services/auth.service';
 
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'change-password', component: ForgotPasswordComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
   { path: 'games', component: GamesComponent, canActivate: [AuthService] },
+  { path: 'wallet', component: WalletComponent, canActivate: [AuthService] },
+  { path: 'marketplace', component: MarketplaceComponent, canActivate: [AuthService] },
   { path: '**', component: LoginComponent }
 ];
 
