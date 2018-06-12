@@ -48,4 +48,24 @@ export class TopNavbarComponent implements OnInit {
         });
       });
   }
+
+  deleteNotification(notificationObj) {
+    const removeIndex = this.notifications.map(function (item) { return item.id; })
+      .indexOf(notificationObj.id);
+    this.notifications.splice(removeIndex, 1);
+    this.notification.deleteNotification(notificationObj.id)
+      .subscribe(data => {
+        if (data['success']) {
+          this.toaster.success('Notification is deleted', 'Success', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center'
+          });
+        }
+      }, errObj => {
+        this.toaster.error('Error', errObj.error.err, {
+          timeOut: 3000,
+          positionClass: 'toast-top-center'
+        });
+      });
+  }
 }

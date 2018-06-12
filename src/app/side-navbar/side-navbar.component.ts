@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Location } from '@angular/common';
 import { EventService } from '../services/eventEmitter.service';
 
 @Component({
@@ -8,12 +9,25 @@ import { EventService } from '../services/eventEmitter.service';
 })
 export class SideNavbarComponent implements OnInit {
 
-  constructor(private _messageService: EventService) { }
+  platFormType: string;
+  constructor(
+    private _messageService: EventService,
+    private location: Location
+  ) {
+    this.platFormType = 'android';
+  }
 
   ngOnInit() {
+    this.platFormType = 'android';
   }
 
   clickFilter(value): void {
+    this.platFormType = value;
     this._messageService.filter(value);
   }
+
+  isActive(state) {
+    return state === this.location.path().split('/')[1];
+  }
+
 }

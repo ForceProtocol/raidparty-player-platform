@@ -28,6 +28,8 @@ import { GamesComponent } from './games/games.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { ActivateAccountComponent } from './auth/activate-account/activate-account.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { HowToComponent } from './how-to/how-to.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { ActivateAccountComponent } from './auth/activate-account/activate-accou
     WalletComponent,
     MarketplaceComponent,
     ActivateAccountComponent,
+    NotificationsComponent,
+    HowToComponent,
   ],
   imports: [
     BrowserModule,
