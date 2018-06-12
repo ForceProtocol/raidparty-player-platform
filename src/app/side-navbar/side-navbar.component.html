@@ -83,20 +83,20 @@
                         </a>
                      </li> -->
 
-                     <li class="nav-header"> PLATFORMS </li>
-                     <li class="nav-item">
-                        <a (click)="clickFilter('ios')" class="nav-link ">
-                           <img class="sidebar-menu-icon" src="assets/images/apple.svg">
-                           <p>
-                              Ios
-                           </p>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a (click)="clickFilter('android')" class="nav-link ">
+                     <li *ngIf="isActive('games')" class="nav-header"> PLATFORMS </li>
+                     <li *ngIf="isActive('games')" class="nav-item">
+                        <a (click)="clickFilter('android')" [ngClass]="{'active': platFormType==='android'}" class="nav-link ">
                            <img class="sidebar-menu-icon" src="assets/images/android.svg">
                            <p>
                               Android
+                           </p>
+                        </a>
+                     </li>
+                     <li *ngIf="isActive('games')" class="nav-item">
+                        <a (click)="clickFilter('ios')" [ngClass]="{'active': platFormType==='ios'}" class="nav-link ">
+                           <img class="sidebar-menu-icon" src="assets/images/apple.svg">
+                           <p>
+                              Ios
                            </p>
                         </a>
                      </li>

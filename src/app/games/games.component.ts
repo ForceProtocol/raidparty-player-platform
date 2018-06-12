@@ -28,7 +28,8 @@ export class GamesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gameService.getAllGames('all')
+    this.platformType = 'android';
+    this.gameService.getAllGames(this.platformType)
       .subscribe(data => {
         if (data['games']) {
           this.gameList = data['games'];

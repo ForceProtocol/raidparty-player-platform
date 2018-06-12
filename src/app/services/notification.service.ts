@@ -29,4 +29,10 @@ export class NotificationService {
       .map(response => response);
   }
 
+  deleteNotification(notificationId) {
+    return this.http.post(`${environment.API_HOST}/mob/player/notification/delete?token=${this.auth.getToken()}`
+      , { notification_id: notificationId })
+      .map(response => response);
+  }
+
 }

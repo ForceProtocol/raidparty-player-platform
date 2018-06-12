@@ -24,8 +24,8 @@ export class GameService {
     }
   }
 
-  getUserPlayedGames() {
-    return this.http.get(`${environment.API_HOST}/player/playerGames?playerId=${this.player.id}`)
+  getUserPlayedGames(device) {
+    return this.http.get(`${environment.API_HOST}/player/playerGames?token=${this.auth.getToken()}&playerId=${this.player.id}&device_type=${device}`)
       .map((response) => response);
   }
 
@@ -36,7 +36,9 @@ export class GameService {
 
   getGameRewardsProgress(rewardcampaignId) {
     console.log(this.player.id);
-    return this.http.get(`${environment.API_HOST}/player/trackProgress?player=${this.player.id}&rewardCampaign=${rewardcampaignId}`)
+    return this.http.get(
+      `${environment.API_HOST}/player/trackProgress?token=${this.auth.getToken()}&player=${this.player.id}&rewardCampaign=${rewardcampaignId}`
+    )
       .map((response) => response);
   }
 

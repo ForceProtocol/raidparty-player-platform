@@ -100,11 +100,13 @@ a {
 	color: #007bff;
 	text-decoration: none;
 	background-color: transparent;
-	-webkit-text-decoration-skip: objects
+	-webkit-text-decoration-skip: objects;
+	cursor: pointer;
 }
 a:hover {
 	color: #0056b3;
-	text-decoration: none
+	text-decoration: none;
+	cursor: pointer;
 }
 a:not([href]):not([tabindex]) {
 	color: inherit;

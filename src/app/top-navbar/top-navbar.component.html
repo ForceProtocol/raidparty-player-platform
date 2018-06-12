@@ -30,15 +30,14 @@
               <div *ngFor="let notification of notifications">
                 <div class="dropdown-divider"></div>
                 <div>
-                  <a class="dropdown-item">
+                  <span class="dropdown-item">
                     {{notification.message}}
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                  </a>
+                    <span class="float-right text-muted text-sm"><a (click)="deleteNotification(notification)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </span>
+                  </span>
                 </div>
                 
               </div>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
           </li>
           <!-- Messages Dropdown Menu -->
@@ -77,7 +76,7 @@
               <a class="nav-link" [ngClass]="{'active': isActive('wallet')}" routerLink="/wallet">Wallet</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [ngClass]="{'active': isActive('howto')}" routerLink="/howto">How to</a>
+              <a class="nav-link" [ngClass]="{'active': isActive('how-to')}" routerLink="/how-to">How to</a>
             </li>
           </ul>
         </div>
