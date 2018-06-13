@@ -30,6 +30,7 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { ActivateAccountComponent } from './auth/activate-account/activate-account.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { HowToComponent } from './how-to/how-to.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { HowToComponent } from './how-to/how-to.component';
     AppRoutingModule,
     NgbModule.forRoot(),
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FormsModule
   ],
   providers: [AuthService, GameService, EventService, NotificationService,
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }],

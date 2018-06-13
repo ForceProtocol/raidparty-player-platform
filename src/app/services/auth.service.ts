@@ -82,6 +82,14 @@ export class AuthService implements CanActivate {
     return true;
   }
 
+  updatePassword(currentPassword, newPassword) {
+    return this.http.post(`${environment.API_HOST}/mob/player/update-password?token=${this.getToken()}`,
+     { 'current_password': currentPassword, 'new_password': newPassword })
+      .map((response: any) => {
+        return response;
+      });
+  }
+
   private setLocalStorage(response) {
     this.player = response.player;
     this.token = response.token;
