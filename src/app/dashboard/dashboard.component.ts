@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
     this.playerCode = this.authService.getLoggedInPlayer().code;
     this.gamePlatform = 'android';
     this._messageService.listen().subscribe((m: any) => {
-      console.log(m);
       this.setPlatformType(m);
     })
   }
@@ -33,7 +32,6 @@ export class DashboardComponent implements OnInit {
       .subscribe((data) => {
         if (data['success']) {
           this.playerGames = data['gamesList'];
-          console.log(this.playerGames);
         }
       }, errObj => {
         this.toaster.error('Error', errObj.error.err, {
@@ -48,7 +46,6 @@ export class DashboardComponent implements OnInit {
       this.gameService.getGameRewardsProgress(reward.id)
         .subscribe(data => {
           reward['progress'] = (data['playerCompletedEvents'] / data['totalEventstoBeCompleted']) * 100;
-          console.log(data);
         }, errObj => {
 
         });
@@ -60,7 +57,6 @@ export class DashboardComponent implements OnInit {
       .subscribe((data) => {
         if (data['success']) {
           this.playerGames = data['gamesList'];
-          console.log(this.playerGames);
         }
       }, errObj => {
         this.toaster.error('Error', errObj.error.err, {

@@ -22,7 +22,6 @@ export class GamesComponent implements OnInit {
     this.playerCode = this.auth.getLoggedInPlayer().code;
     this.platformType = 'android';
     this._messageService.listen().subscribe((m: any) => {
-      console.log(m);
       this.setPlatformType(m);
     })
   }
@@ -33,7 +32,6 @@ export class GamesComponent implements OnInit {
       .subscribe(data => {
         if (data['games']) {
           this.gameList = data['games'];
-          console.log(this.gameList);
         }
       }, errObj => {
         this.toaster.error('Error', errObj.error.err, {

@@ -4,6 +4,9 @@ import { NotificationService } from '../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @Component({
   selector: 'app-top-navbar',
@@ -14,13 +17,17 @@ export class TopNavbarComponent implements OnInit {
 
   state: String;
   notifications: any;
+  closeResult: string;
+  currentPassword: string;
+  newPassword: string;
   constructor(
     private auth: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private location: Location,
     private notification: NotificationService,
-    private toaster: ToastrService
+    private modalService: NgbModal,
+    private toaster: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -39,7 +46,6 @@ export class TopNavbarComponent implements OnInit {
   getNotification() {
     this.notification.getPlayerNotifications()
       .subscribe(data => {
-        console.log(data);
         this.notifications = data['notifications'];
       }, errObj => {
         this.toaster.error('Error', errObj.error.err, {
@@ -68,4 +74,50 @@ export class TopNavbarComponent implements OnInit {
         });
       });
   }
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      if (result === 'save') {
+        this.updatePassword();
+      }
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  private updatePassword() {
+    if (!this.currentPassword || !this.newPassword) {
+      this.toaster.error('Error', 'Please provide all inputs', {
+        timeOut: 3000,
+        positionClass: 'toast-top-center'
+      });
+      return;
+    }
+    this.auth.updatePassword(this.currentPassword, this.newPassword)
+      .subscribe(data => {
+        if (data['success']) {
+          this.toaster.success(data['msg'], 'Success', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center'
+          });
+        }
+      }, errObj => {
+        this.toaster.error('Error', errObj.error.err, {
+          timeOut: 3000,
+          positionClass: 'toast-top-center'
+        });
+      });
+  }
+
 }
