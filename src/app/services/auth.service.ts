@@ -34,14 +34,14 @@ export class AuthService implements CanActivate {
   }
 
   signup(params) {
-    return this.http.post(`${environment.API_HOST}/mob/player/signup`, params)
+    return this.http.post(`${environment.API_HOST}/web/player/signup`, params)
       .map((response) => {
         return response;
       });
   }
 
   login(params) {
-    return this.http.post(`${environment.API_HOST}/mob/player/login`, params)
+    return this.http.post(`${environment.API_HOST}/web/player/login`, params)
       .map((response) => {
         if (response['success']) {
           this.isLoggedIn = true;
@@ -52,18 +52,18 @@ export class AuthService implements CanActivate {
   }
 
   resetPassword(params) {
-    return this.http.post(`${environment.API_HOST}/mob/player/reset-password`, params);
+    return this.http.post(`${environment.API_HOST}/web/player/reset-password`, params);
   }
 
   changePassword(params, playerId) {
-    return this.http.post(`${environment.API_HOST}/mob/player/change-password?playerId=${playerId}`, params)
+    return this.http.post(`${environment.API_HOST}/web/player/change-password?playerId=${playerId}`, params)
       .map((response: any) => {
         return response;
       });
   }
 
   activatePlayer(playerId, pin) {
-    return this.http.post(`${environment.API_HOST}/mob/player/activate`, { playerId, pin })
+    return this.http.post(`${environment.API_HOST}/web/player/activate`, { playerId, pin })
       .map((response: any) => {
         return response;
       });
@@ -83,7 +83,7 @@ export class AuthService implements CanActivate {
   }
 
   updatePassword(currentPassword, newPassword) {
-    return this.http.post(`${environment.API_HOST}/mob/player/update-password?token=${this.getToken()}`,
+    return this.http.post(`${environment.API_HOST}/web/player/update-password?token=${this.getToken()}`,
      { 'current_password': currentPassword, 'new_password': newPassword })
       .map((response: any) => {
         return response;

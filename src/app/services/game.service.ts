@@ -30,7 +30,7 @@ export class GameService {
   }
 
   getAllGames(platformFilter) {
-    return this.http.get(`${environment.API_HOST}/mob/player/games?token=${this.auth.getToken()}&device_type=${platformFilter}`)
+    return this.http.get(`${environment.API_HOST}/web/player/games?token=${this.auth.getToken()}&device_type=${platformFilter}`)
       .map(response => response);
   }
 

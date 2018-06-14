@@ -25,12 +25,12 @@ export class NotificationService {
   }
 
   getPlayerNotifications() {
-    return this.http.get(`${environment.API_HOST}/mob/player/notifications?token=${this.auth.getToken()}`)
+    return this.http.get(`${environment.API_HOST}/web/player/notifications?token=${this.auth.getToken()}`)
       .map(response => response);
   }
 
   deleteNotification(notificationId) {
-    return this.http.post(`${environment.API_HOST}/mob/player/notification/delete?token=${this.auth.getToken()}`
+    return this.http.post(`${environment.API_HOST}/web/player/notification/delete?token=${this.auth.getToken()}`
       , { notification_id: notificationId })
       .map(response => response);
   }
