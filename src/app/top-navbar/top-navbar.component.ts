@@ -14,9 +14,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./top-navbar.component.css']
 })
 export class TopNavbarComponent implements OnInit {
-
   state: String;
   notifications: any;
+  forceBalance: string;
   closeResult: string;
   currentPassword: string;
   newPassword: string;
@@ -32,10 +32,11 @@ export class TopNavbarComponent implements OnInit {
 
   ngOnInit() {
     this.getNotification();
+	this.getPlayerForceBalance();
   }
 
   isActive(state) {
-    return state === this.location.path().split('/')[1];
+	return state === this.location.path().split('/')[1];
   }
 
   logout() {
@@ -43,6 +44,18 @@ export class TopNavbarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  
+	getPlayerForceBalance(){
+		this.auth.getPlayerForceBalance().subscribe(data => {
+			this.forceBalance = data['player'].forceBalance;
+			}, errObj => {
+			this.toaster.error('Error', errObj.error.err, {
+			  timeOut: 3000,
+			  positionClass: 'toast-top-center'
+			});
+		});
+	}
+	
   getNotification() {
     this.notification.getPlayerNotifications()
       .subscribe(data => {

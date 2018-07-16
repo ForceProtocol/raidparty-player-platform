@@ -69,9 +69,16 @@ export class AuthService implements CanActivate {
       });
   }
 
-  getToken() {
-    return this.token;
-  }
+	getToken() {
+		return this.token;
+	}
+  
+	getPlayerForceBalance() {
+		return this.http.get(`${environment.API_HOST}/web/player?token=${this.getToken()}`)
+			.map((response: any) => {
+				return response;
+			});
+	}
 
   logout() {
     // Api is not implemented yet so currently working with clearing localStorage

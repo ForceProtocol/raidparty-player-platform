@@ -10481,3 +10481,8 @@ footer {
 	height: 100%;
 	width: 100%;
 }
+
+.force-symbol-small {
+	width: 18px;
+	margin-bottom: 4px;
+}
