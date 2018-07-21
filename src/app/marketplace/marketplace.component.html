@@ -1,24 +1,69 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="feature-on-the-way">
-          <h2>This Feature is on the way</h2>
-        </div>
-        
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
-    
-    <!-- /.container-fluid -->
-  </div>
-  <!-- /.content-header -->
-  <!-- Main content -->
-  <section class="content">
-  
-  </section>
-  <!-- /.content -->
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+		  <div class="row mb-2">
+			<div class="col-sm-6">
+			  <h4 class="m-0 text-dark"> Marketplace </h4>
+			</div>
+			<!-- /.col -->
+			<div class="col-sm-6">
+			  <ol class="breadcrumb float-md-right">
+				<li class="breadcrumb-item active">Your Player Code :
+				  <strong>{{playerCode}}</strong>
+				</li>
+			  </ol>
+			</div>
+			<!-- /.col -->
+		  </div>
+		  <!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+	
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+		
+			<!-- Small boxes (Stat box) -->
+			<div class="row">
+			
+				
+				<div class="col-lg-3 col-sm-6 col-12" *ngFor="let product of productList">
+					<div class="card card-info card-outline">
+						<img class="img-fluid" src="{{product.img}}" />
+						<div class="product-list-banner-text">
+							<span class="force-price"><img class="force-symbol-small" src="/assets/images/force-icon-white-small.png" alt="FORCE" /><span class="price">{{product.forcePrice}}</span></span>
+							<span class="item-platform">Platform: {{product.platform}}</span>
+							<span class="item-quantity">Available: {{product.qty}}</span>
+						</div>
+						<li class="list-group-item game-title-li">
+							<h3>{{product.title}}</h3>
+							<div class="game-description">
+								{{product.description}}
+							</div>
+							<div class="item-price">
+								<span class="left-price">Force price:<br /><img class="force-symbol-small" src="/assets/images/gold-logo-only-for-print-48x48.png" alt="FORCE" />&nbsp;{{product.forcePrice}}</span>
+								<span class="right-price">List price:<br />&#36;{{product.usdPrice}}</span>
+							</div>
+						</li>
+						<div class="btn-group w-100">
+							<button type="button" class="btn btn-block bg-dark" (click)="initiateOrderModal(product.id)">
+								<i class="fa fa-cart"></i>&nbsp;order now
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				
+			
+
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+<!-- /.content -->
 </div>

@@ -1,0 +1,79 @@
+
+<ngx-smart-modal [customClass]="'nsm-centered nsm-dialog-animation-ttb d-block'" #orderProductModal [identifier]="'orderProductModal'" (onAnyCloseEvent)="clearModalData('orderProductModal')">
+	<div class="modal-dialog" role="document" *ngIf="orderProductModal.hasData()">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Order Item</h5>
+			</div>
+
+			<form #confirmOrderForm="ngForm" (ngSubmit)="confirmProductOrder(confirmOrderForm.value)">
+				<input type="hidden" name="productId" [(ngModel)]="orderProductModal.getData().id" ngModel />
+				<div class="modal-body">
+
+					<p>You are about to purchase the following item with your Force balance:</p>
+
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Qty</th>
+								<th>Cost FORCE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{orderProductModal.getData().title}} on {{orderProductModal.getData().platform | uppercase}}<br /><small>{{orderProductModal.getData().orderNote}}</small></td>
+								<td>1</td>
+								<td>{{orderProductModal.getData().forcePrice}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<small>
+						<div class="alert alert-info" role="alert">
+							Game access keys will be emailed to: {{player.email}}
+						</div>
+					</small>
+					
+					<p><small><strong>Before commiting to purchase this item please ensure you have read and agreed to our <a target="blank" href="https://raidparty.io/terms-of-service">terms of service</a></strong></small></p>
+
+					<p><small><strong>Please note: We will not accept refunds for distribution of digital goods unless within 24 hours of ordering and the digital good has not been used.</strong></small></p>
+					
+					<div [ngClass]="showLegalWarning ? 'alert alert-danger' : 'alert alert-notice'">
+						<p *ngIf="showLegalWarning">You must confirm agreement below to complete your order</p>
+						<strong><input type="checkbox" name="confirmLegal" [(ngModel)]="confirmLegal" (change)="confirmLegalAgreement(confirmLegal ? true:false)" /> - I agree to the terms of service and paying with my Force wallet balance</strong>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-success" type="submit">Confirm Order</button>
+					<button (click)="orderProductModal.close()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</ngx-smart-modal>
+
+
+
+
+
+<ngx-smart-modal [customClass]="'nsm-centered nsm-dialog-animation-ttb d-block'" #invalidActionModal [identifier]="'invalidActionModal'" (onAnyCloseEvent)="clearModalData('invalidActionModal')">
+	<div class="modal-dialog" role="document" *ngIf="invalidActionModal.hasData()">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">{{invalidActionModal.getData().title}}</h5>
+			</div>
+			<div class="modal-body">
+
+				<div *ngFor="let message of invalidActionModal.getData().messages">
+					<p>{{message}}</p>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button (click)="invalidActionModal.close()" type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+			</div>
+		</div>
+	</div>
+</ngx-smart-modal>

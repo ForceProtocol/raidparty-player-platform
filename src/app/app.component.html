@@ -1,4 +1,6 @@
 <app-side-navbar *ngIf="isLoggedIn()"></app-side-navbar>
+<app-marketplace-search-navbar *ngIf="isLoggedIn()"></app-marketplace-search-navbar>
 <app-top-navbar *ngIf="isLoggedIn()"></app-top-navbar>
+<app-order-product-modal *ngIf="isLoggedIn()"></app-order-product-modal>
 <router-outlet></router-outlet>
 <app-footer *ngIf="isLoggedIn()"></app-footer>

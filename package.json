@@ -25,9 +25,11 @@
     "core-js": "^2.4.1",
     "jquery-ui": "^1.12.1",
     "jqueryui": "^1.11.1",
+    "ngx-smart-modal": "^7.0.1",
     "ngx-toastr": "^8.7.3",
     "popper.js": "^1.14.3",
     "rxjs": "^5.5.6",
+    "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

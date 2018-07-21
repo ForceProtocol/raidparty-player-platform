@@ -1,0 +1,33 @@
+
+         <!-- Main Sidebar Container -->
+         <aside class="main-sidebar sidebar-dark-primary" *ngIf="isActive('marketplace')">
+            <!-- Brand Logo -->
+            <!-- Sidebar -->
+            <div class="sidebar">
+               <!-- Sidebar Menu -->
+               <nav class="mt-2">
+                  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                     <li class="nav-header"> SEARCH PRODUCTS </li>
+                     <li class="nav-item">
+                        <a (click)="setProductCategory('games')" [ngClass]="{'active': productCategory==='games'}" class="nav-link ">
+                           <img class="sidebar-menu-icon" src="/assets/images/pc-game-icon.png">
+                           <p>
+                              GAMES
+                           </p>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a (click)="setProductCategory('merchandise')" [ngClass]="{'active': productCategory==='merchandise'}" class="nav-link ">
+                           <img class="sidebar-menu-icon" src="/assets/images/game-merch-icon.png">
+                           <p>
+                              MERCHANDISE
+                           </p>
+                        </a>
+                     </li>
+                  </ul>
+               </nav>
+               <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+         </aside>
+         

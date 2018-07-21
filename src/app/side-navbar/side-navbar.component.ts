@@ -7,18 +7,19 @@ import { EventService } from '../services/eventEmitter.service';
   templateUrl: './side-navbar.component.html',
   styleUrls: ['./side-navbar.component.css']
 })
-export class SideNavbarComponent implements OnInit {
 
+export class SideNavbarComponent implements OnInit {
   platFormType: string;
+  activeRoute: string;
   constructor(
     private _messageService: EventService,
-    private location: Location
-  ) {
-    this.platFormType = 'android';
+    private location: Location) 
+  {
+      this.platFormType = 'android';
   }
 
   ngOnInit() {
-    this.platFormType = 'android';
+      this.platFormType = 'android';
   }
 
   clickFilter(value): void {

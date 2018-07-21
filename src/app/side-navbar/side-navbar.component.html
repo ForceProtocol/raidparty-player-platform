@@ -1,147 +1,37 @@
 
          <!-- Main Sidebar Container -->
-         <aside class="main-sidebar sidebar-dark-primary ">
+         <aside class="main-sidebar sidebar-dark-primary" *ngIf="isActive('games')">
             <!-- Brand Logo -->
             <!-- Sidebar -->
             <div class="sidebar">
                <!-- Sidebar Menu -->
                <nav class="mt-2">
                   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                  <!--    <li class="nav-item">
-                        <a href="index.php" class="nav-link active">
-                           <i class="nav-icon fa fa-dashboard"></i>
+                     <li class="nav-header"> PLATFORMS </li>
+                     <li class="nav-item">
+                        <a (click)="clickFilter('pc')" [ngClass]="{'active': platFormType==='pc'}" class="nav-link ">
+                           <img class="sidebar-menu-icon" src="/assets/images/pc-game-icon.png">
                            <p>
-                              Dashboard
+                              PC
                            </p>
                         </a>
                      </li>
                      <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                           <i class="nav-icon fa fa-gamepad"></i>
-                           <p>
-                              Games 
-                           </p>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                           <i class="nav-icon fa fa-shopping-bag"></i>
-                           <p>
-                              Marketplace
-                           </p>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a href="wallet.php" class="nav-link ">
-                           <i class="nav-icon fa fa-google-wallet"></i>
-                           <p>
-                              Wallet 
-                           </p>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                           <i class="nav-icon fa fa-lightbulb-o"></i>
-                           <p>
-                              How to
-                           </p>
-                        </a>
-                     </li> -->
-                     <!-- <li class="nav-header"> SEARCH </li>
-                     <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                           <img class="sidebar-menu-icon" src="assets/images/free.svg">
-                           <p>
-                              Free  
-                           </p>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                           <img class="sidebar-menu-icon" src="assets/images/premium.svg">
-                           <p>
-                              Premium 
-                           </p>
-                        </a>
-                     </li> -->
-
-                     <!-- <li class="nav-header"> SEARCH </li>
-                     <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                           <img class="sidebar-menu-icon" src="assets/images/gamepad.svg">
-                           <p>
-                              Game  
-                           </p>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                           <img class="sidebar-menu-icon" src="assets/images/business.svg">
-                           <p>
-                              Merchandise 
-                           </p>
-                        </a>
-                     </li> -->
-
-                     <li *ngIf="isActive('games')" class="nav-header"> PLATFORMS </li>
-                     <li *ngIf="isActive('games')" class="nav-item">
                         <a (click)="clickFilter('android')" [ngClass]="{'active': platFormType==='android'}" class="nav-link ">
-                           <img class="sidebar-menu-icon" src="assets/images/android.svg">
+                           <img class="sidebar-menu-icon" src="/assets/images/android.svg">
                            <p>
                               Android
                            </p>
                         </a>
                      </li>
-                     <li *ngIf="isActive('games')" class="nav-item">
+                     <li class="nav-item">
                         <a (click)="clickFilter('ios')" [ngClass]="{'active': platFormType==='ios'}" class="nav-link ">
-                           <img class="sidebar-menu-icon" src="assets/images/apple.svg">
+                           <img class="sidebar-menu-icon" src="/assets/images/apple.svg">
                            <p>
                               Ios
                            </p>
                         </a>
                      </li>
-                     <!-- sub manu  -->
-                     <!--<li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                          <i class="nav-icon fa fa-pie-chart"></i>
-                          <p>
-                            Charts
-                            <i class="right fa fa-angle-left"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                              <i class="fa fa-circle-o nav-icon"></i>
-                              <p>ChartJS</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                              <i class="fa fa-circle-o nav-icon"></i>
-                              <p>ChartJS</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                              <i class="fa fa-circle-o nav-icon"></i>
-                              <p>ChartJS</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                              <i class="fa fa-circle-o nav-icon"></i>
-                              <p>ChartJS</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                              <i class="fa fa-circle-o nav-icon"></i>
-                              <p>ChartJS</p>
-                            </a>
-                          </li>
-                        </ul>
-                        </li> -->
                   </ul>
                </nav>
                <!-- /.sidebar-menu -->

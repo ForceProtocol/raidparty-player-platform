@@ -2,7 +2,6 @@
 /*
   Bootstrap v4.1.0 (https://getbootstrap.com/)
 */
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 *, ::after, ::before {
 	box-sizing: border-box
@@ -10486,3 +10485,149 @@ footer {
 	width: 18px;
 	margin-bottom: 4px;
 }
+
+.item-price {
+	font-size: 16px;
+}
+.item-price .left-price {
+	float:left;
+}
+.item-price .right-price {
+	float:right;
+}
+
+.product-list-banner-text {
+	position: relative;
+	padding: 5px;
+	text-align: left;
+	/* z-index: 2; */
+	background-color: #429ba8;
+	color: #fff;
+	font-size: 14px;
+	line-height: 25px;
+	letter-spacing: .5px;
+	font-weight: 600;
+	text-shadow: 0 0 4px #696969;
+}
+.product-list-banner-text img {
+	margin: 0 6px 5px 6px;
+}
+.product-list-banner-text::after {
+	content: "";
+	position: absolute;
+	top: -20px;
+	right: 0%;
+	width: 0px;
+	height: 0px;
+	border-bottom: 20px solid #429ba8;
+	border-left: 20px solid transparent;
+}
+.product-list-banner-text::before {
+	content: "";
+	position: absolute;
+	top: -20px;
+	left: 0%;
+	width: 0px;
+	height: 0px;
+	border-bottom: 20px solid #429ba8;
+	border-right: 20px solid transparent;
+}
+.product-list-banner-text .force-price {
+	font-size: 10px;
+}
+.product-list-banner-text .force-price .price {
+	margin-top:8px;
+}
+.product-list-banner-text .item-platform {
+	margin-left: 10px;
+}
+.product-list-banner-text .item-quantity {
+	text-align: right;
+	float: right;
+}
+
+
+/** NGX-SMART-MODAL */
+body.dialog-open {
+  overflow: hidden; }
+
+.nsm-dialog-btn-close {
+  border: 0;
+  background: none;
+  color: #2d2d2d;
+  position: absolute;
+  top: 8px;
+  right: 18px;
+  font-size: 1.2em;
+  cursor: pointer; }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: background-color 500ms;
+  background-color: transparent;
+  z-index: 999; }
+  .overlay.nsm-overlay-open {
+    background-color: rgba(0, 0, 0, 0.5); }
+  .overlay.transparent {
+    background-color: transparent; }
+
+.nsm-dialog {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  min-height: 200px;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  pointer-events: none; }
+  .nsm-dialog.nsm-dialog-close {
+    opacity: 0; }
+  .nsm-dialog.nsm-centered {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - (1.75rem * 2)); }
+
+
+.nsm-body {
+  position: relative;
+  flex: 1 1 auto; }
+
+/* *************************
+* Animations
+* *************************/
+.nsm-dialog[class*=nsm-dialog-animation-] {
+  transition: transform 500ms ease-in-out, opacity 500ms; }
+
+.nsm-dialog-animation-ltr {
+  transform: translate3d(-50%, 0, 0); }
+  .nsm-dialog-animation-ltr.nsm-dialog-open {
+    transform: translate3d(0, 0, 0); }
+  .nsm-dialog-animation-ltr.nsm-dialog-close {
+    transform: translate3d(-50%, 0, 0); }
+
+.nsm-dialog-animation-rtl {
+  transform: translate3d(50%, 0, 0); }
+  .nsm-dialog-animation-rtl.nsm-dialog-open {
+    transform: translate3d(0, 0, 0); }
+  .nsm-dialog-animation-rtl.nsm-dialog-close {
+    transform: translate3d(50%, 0, 0); }
+
+.nsm-dialog-animation-ttb {
+  transform: translate3d(0, -50%, 0); }
+  .nsm-dialog-animation-ttb.nsm-dialog-open {
+    transform: translate3d(0, 0, 0); }
+  .nsm-dialog-animation-ttb.nsm-dialog-close {
+    transform: translate3d(0, -50%, 0); }
+
+.nsm-dialog-animation-btt {
+  transform: translate3d(0, 50%, 0); }
+  .nsm-dialog-animation-btt.nsm-dialog-open {
+    transform: translate3d(0, 0, 0); }
+  .nsm-dialog-animation-btt.nsm-dialog-close {
+    transform: translate3d(0, 50%, 0); }

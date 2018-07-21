@@ -24,6 +24,11 @@ export class AuthService implements CanActivate {
   getLoggedInPlayer() {
     return this.player;
   }
+
+  setLoggedInPlayer(player){
+    this.player = player;
+  }
+
   canActivate() {
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
