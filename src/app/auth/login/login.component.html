@@ -5,10 +5,10 @@
         <div class="form-bg mt-5  ">
           <div class="pt-5 pb-5">
             <a href="">
-              <img src="/assets/images/logo.png">
+              <img src="/assets/images/raidparty-logo.png">
             </a>
           </div>
-          <form [formGroup]="loginForm">
+          <form (keydown)="formSubmit($event)" [formGroup]="loginForm">
             <div class="form-heading mb-4">
               <h3>Please login to your account</h3>
             </div>

@@ -37,7 +37,6 @@ export class ActivateAccountComponent implements OnInit {
   }
 
   activatePlayer() {
-    console.log(this.activationForm.value);
     this.auth.activatePlayer(this.params.playerId, this.activationForm.value.pin)
       .subscribe((data) => {
         this.toaster.success('Success', data.msg, {
@@ -52,5 +51,12 @@ export class ActivateAccountComponent implements OnInit {
           positionClass: 'toast-top-center'
         });
       });
+  }
+
+
+  submitForm(event){
+    if(event.keyCode == 13){
+      this.activatePlayer();
+    }
   }
 }

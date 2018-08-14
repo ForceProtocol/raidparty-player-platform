@@ -46,6 +46,7 @@ export class AuthService implements CanActivate {
   }
 
   login(params) {
+    console.log("sending login request");
     return this.http.post(`${environment.API_HOST}/web/player/login`, params)
       .map((response) => {
         if (response['success']) {

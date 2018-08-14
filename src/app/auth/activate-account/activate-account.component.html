@@ -5,9 +5,9 @@
  				<div class="col-11 col-md-8 m-auto">
  			<div class="form-bg mt-5  ">
 		    <div class="pt-5 pb-5">
-            <a href=""><img src="/assets/images/logo.png"></a>
+            <a href=""><img src="/assets/images/raidparty-logo.png"></a>
           </div>
-          <form [formGroup]="activationForm">
+          <form (keydown)="submitForm($event)" [formGroup]="activationForm">
             <div class="form-heading mb-4">
               <h3> Please enter your PIN </h3>
             </div>

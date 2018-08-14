@@ -50,14 +50,14 @@ export class ForgotPasswordComponent implements OnInit {
   resetPassword() {
     this.auth.resetPassword(this.forgotPasswordForm.value)
       .subscribe((data) => {
-        this.toaster.success('Success', data['msg'], {
+        this.toaster.success(data['msg'],'Success', {
           timeOut: 3000,
           positionClass: "toast-top-right"
         });
         this.router.navigate(['/login']);
       },
       (errorObj) => {
-        this.toaster.error('Error', errorObj.error.err, {
+        this.toaster.error(errorObj.error.err,'Error', {
           timeOut: 3000,
           positionClass: "toast-top-center"
         })
@@ -67,18 +67,30 @@ export class ForgotPasswordComponent implements OnInit {
   changePassword() {
     this.auth.changePassword(this.changePasswordForm.value, this.playerId)
       .subscribe((response) => {
-        this.toaster.success('Success', response.msg, {
+        this.toaster.success(response.msg, 'Success', {
           timeOut: 3000,
           positionClass: "toast-top-right"
         });
         this.router.navigate(['/login']);
       },
       (errorObj) => {
-        this.toaster.error('Error', errorObj.error.err, {
+        this.toaster.error(errorObj.error.err,'Error', {
           timeOut: 3000,
           positionClass: "toast-top-center"
         })
       });
   }
 
+
+  submitForm(event,formType){
+    if(event.keyCode == 13){
+      if(formType == 'forgotPassword'){
+        this.resetPassword();
+      }else if(formType == 'changePassword'){
+        this.changePassword();
+      }
+    }
+  }
+
+  
 }
